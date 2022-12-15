@@ -18,7 +18,6 @@
 		grid-template-columns: 1fr;
 		grid-gap: 1rem;
 	}
-
 	@media (min-width: 768px) {
 		section {
 			grid-template-columns: repeat(2, 1fr);

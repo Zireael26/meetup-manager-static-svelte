@@ -24,24 +24,20 @@
 		align-items: center;
 		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 	}
-
 	header h1 {
 		color: white;
 		font-family: 'Roboto Slab', 'serif';
 		margin-left: 1rem;
 	}
-
 	header nav {
 		margin-right: 1rem;
 		margin-left: auto;
 	}
-
 	header nav a {
 		color: white;
 		text-decoration: none;
 		margin-left: 1rem;
 	}
-
 	:global(main) {
 		margin-top: 4rem;
 		font-family: 'Lato', 'sans-serif';
