@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import type Meetup from '../../models/meetup';
 	import Button from '../Button.svelte';
+	import Badge from '../Badge.svelte';
 
 	export let meetup: Meetup;
 
@@ -13,7 +14,12 @@
 
 <article>
 	<header>
-		<h1 class:is-favorite={meetup.isFavorite}>{meetup.title}</h1>
+		<h1>
+			{meetup.title}
+			{#if meetup.isFavorite}
+				<Badge>FAVORITE</Badge>
+			{/if}
+		</h1>
 		<h2>{meetup.subtitle}</h2>
 		<p>{meetup.address}</p>
 	</header>
@@ -57,12 +63,6 @@
 		font-size: 1.25rem;
 		margin: 0.5rem 0;
 		font-family: 'Roboto Slab', sans-serif;
-	}
-	h1.is-favorite {
-		background: #01a129;
-		color: white;
-		padding: 0 0.5rem;
-		border-radius: 5px;
 	}
 	h2 {
 		font-size: 1rem;
