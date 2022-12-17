@@ -6,8 +6,8 @@
 	export let meetup: Meetup;
 
 	const dispatch = createEventDispatcher();
-	function toggleFavorite() {
-		dispatch('toggleFavorite', { id: meetup.id });
+	function togglefavorite() {
+		dispatch('togglefavorite', { id: meetup.id });
 	}
 </script>
 
@@ -25,7 +25,9 @@
 	</div>
 	<footer>
 		<Button href="mailto:{meetup.contactEmail}">Contact</Button>
-		<Button mode="outline" on:click={toggleFavorite}>{meetup.isFavorite? 'Unfavorite':'Favorite'}</Button>
+		<Button mode="outline" on:click={togglefavorite}
+			>{meetup.isFavorite ? 'Unfavorite' : 'Favorite'}</Button
+		>
 		<Button>Show Details</Button>
 	</footer>
 </article>

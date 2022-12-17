@@ -112,7 +112,7 @@
 			<Button type="submit">Save</Button>
 		</div>
 	</form>
-	<MeetupGrid {meetups} on:toggleFavorite={toggleFavorite} />
+	<MeetupGrid {meetups} on:togglefavorite={toggleFavorite} />
 </main>
 
 <style>

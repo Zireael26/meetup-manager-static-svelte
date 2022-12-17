@@ -6,14 +6,11 @@
 	export let meetups: Meetup[];
 
 	const dispatch = createEventDispatcher();
-	function toggleFavorite(event: CustomEvent<{ id: string }>) {
-		dispatch('toggleFavorite', { id: event.detail.id });
-	}
 </script>
 
 <section>
 	{#each meetups as meetup (meetup.id)}
-		<MeetupItem {meetup} on:toggleFavorite={toggleFavorite} />
+		<MeetupItem {meetup} on:togglefavorite />
 	{/each}
 </section>
 
