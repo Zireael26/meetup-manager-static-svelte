@@ -61,6 +61,11 @@
 		const target = event.target as HTMLInputElement;
 		newMeetup[attributeKey] = target.value;
 	}
+
+	function toggleFavorite(event: CustomEvent<{ id: string }>) {
+		const meetupIndex = meetups.findIndex((meetup) => meetup.id === event.detail.id);
+		meetups[meetupIndex].isFavorite = !meetups[meetupIndex].isFavorite;
+	}
 </script>
 
 <main>
@@ -107,7 +112,7 @@
 			<Button type="submit">Save</Button>
 		</div>
 	</form>
-	<MeetupGrid {meetups} />
+	<MeetupGrid {meetups} on:toggleFavorite={toggleFavorite} />
 </main>
 
 <style>

@@ -1,8 +1,14 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import type Meetup from '../../models/meetup';
 	import Button from '../Button.svelte';
 
 	export let meetup: Meetup;
+
+	const dispatch = createEventDispatcher();
+	function toggleFavorite() {
+		dispatch('toggleFavorite', { id: meetup.id });
+	}
 </script>
 
 <article>
@@ -19,7 +25,7 @@
 	</div>
 	<footer>
 		<Button href="mailto:{meetup.contactEmail}">Contact</Button>
-		<Button mode="outline">Favorite</Button>
+		<Button mode="outline" on:click={toggleFavorite}>{meetup.isFavorite? 'Unfavorite':'Favorite'}</Button>
 		<Button>Show Details</Button>
 	</footer>
 </article>

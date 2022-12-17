@@ -1,9 +1,9 @@
 <script lang="ts">
+	export let id: string;
+	export let label: string;
+	export let value: string;
 	export let controlType = 'text';
-	export let id = '';
-	export let label = '';
 	export let rows = 3;
-	export let value = '';
 </script>
 
 <div class="form-control">
