@@ -50,26 +50,31 @@
 		}
 		editMode = 'add';
 	}
+
+	function closeModal() {
+		editMode = '';
+	}
+
 </script>
 
 <main>
-	<Button on:click={toggleAddMode}>
-		{#if editMode === 'add'}
-			Show All Meetups
-		{:else}
-			Add New Meetup
+	<div class="add-meetup-action">
+		{#if editMode !== 'add'}
+			<Button on:click={toggleAddMode}>Add New Meetup</Button>
 		{/if}
-	</Button>
+	</div>
 	{#if editMode === 'add'}
-		<EditMeetup {nextMeetupId} on:savemeetup={addMeetup} />
-	{:else}
-		<MeetupGrid {meetups} on:togglefavorite={toggleFavorite} />
+		<EditMeetup {nextMeetupId} on:savemeetup={addMeetup} on:modalactionclose={closeModal} on:modalactioncancel={closeModal}/>
 	{/if}
+		<MeetupGrid {meetups} on:togglefavorite={toggleFavorite} />
 </main>
 
 <style>
 	main {
 		/* top right bottom left */
-		margin: 5rem 1rem 0 1rem;
+		margin: 5rem 0 0 0;
+	}
+	.add-meetup-action {
+		margin-left: 1rem;
 	}
 </style>
