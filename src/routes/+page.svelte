@@ -54,7 +54,6 @@
 	function closeModal() {
 		editMode = '';
 	}
-
 </script>
 
 <main>
@@ -64,9 +63,14 @@
 		{/if}
 	</div>
 	{#if editMode === 'add'}
-		<EditMeetup {nextMeetupId} on:savemeetup={addMeetup} on:modalactionclose={closeModal} on:modalactioncancel={closeModal}/>
+		<EditMeetup
+			{nextMeetupId}
+			on:savemeetup={addMeetup}
+			on:modalactionclose={closeModal}
+			on:modalactioncancel={closeModal}
+		/>
 	{/if}
-		<MeetupGrid {meetups} on:togglefavorite={toggleFavorite} />
+	<MeetupGrid {meetups} on:togglefavorite={toggleFavorite} />
 </main>
 
 <style>

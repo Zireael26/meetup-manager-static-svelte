@@ -1,11 +1,8 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import type Meetup from '../../models/meetup';
 	import MeetupItem from './MeetupItem.svelte';
 
 	export let meetups: Meetup[];
-
-	const dispatch = createEventDispatcher();
 </script>
 
 <section>

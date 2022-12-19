@@ -89,8 +89,10 @@
 		/>
 	</form>
 	<div class="form-actions" slot="actions">
-		<Button type="button" mode="outline" on:click={() => dispatch('modalactioncancel')}>Cancel</Button>
-		<Button type="button" on:click="{submitForm}">Save</Button>
+		<Button type="button" mode="outline" on:click={() => dispatch('modalactioncancel')}
+			>Cancel</Button
+		>
+		<Button type="button" on:click={submitForm}>Save</Button>
 	</div>
 </Modal>
 
