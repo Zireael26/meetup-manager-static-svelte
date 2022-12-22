@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type Meetup from '../models/meetup';
-	import MeetupGrid from '../components/meetups/MeetupGrid.svelte';
-	import EditMeetup from '../components/meetups/EditMeetup.svelte';
-	import Button from '../components/Button.svelte';
+	import type Meetup from '../lib/models/meetup';
+	import MeetupGrid from '../lib/components/meetups/MeetupGrid.svelte';
+	import EditMeetup from '../lib/components/meetups/EditMeetup.svelte';
+	import Button from '../lib/components/Button.svelte';
 
 	$: nextMeetupId = 'm' + (Number(meetups[0].id.split('')[1]) + 1);
 
