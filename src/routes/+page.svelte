@@ -10,16 +10,12 @@
 	let editMode = '';
 
 	function addMeetup(event: CustomEvent<Meetup>) {
-		meetups.update((meetups) => [event.detail, ...meetups]);
+		meetups.addMeetup(event.detail);
 		editMode = '';
 	}
 
 	function toggleFavorite(event: CustomEvent<{ id: string }>) {
-		meetups.update((meetups) => {
-			const meetupIndex = meetups.findIndex((meetup) => meetup.id === event.detail.id);
-			meetups[meetupIndex].isFavorite = !meetups[meetupIndex].isFavorite;
-			return meetups;
-		});
+		meetups.toggleFavorite(event.detail.id);
 	}
 
 	function toggleAddMode() {
