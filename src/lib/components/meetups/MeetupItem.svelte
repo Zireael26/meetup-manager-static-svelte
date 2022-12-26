@@ -1,14 +1,18 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	// import { createEventDispatcher } from 'svelte';
 	import type Meetup from '../../models/meetup';
 	import Button from '../Button.svelte';
 	import Badge from '../Badge.svelte';
 
+	import meetups from '../../../store/meetups-store';
+
 	export let meetup: Meetup;
 
-	const dispatch = createEventDispatcher();
+	// const dispatch = createEventDispatcher();
 	function togglefavorite() {
-		dispatch('togglefavorite', { id: meetup.id });
+		// No need to dispatch an event, we can directly call the store
+		// dispatch('togglefavorite', { id: meetup.id });
+		meetups.toggleFavorite(meetup.id);
 	}
 </script>
 

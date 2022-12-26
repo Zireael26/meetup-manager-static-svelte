@@ -7,6 +7,8 @@
 	import TextInput from '../TextInput.svelte';
 	import { notEmpty } from '../../../utils/validation';
 
+	import meetups from '../../../store/meetups-store';
+
 	const dispatch = createEventDispatcher();
 
 	$: titleValid = notEmpty(editedMeetup.title);
@@ -42,12 +44,42 @@
 		if (editedMeetup.id === '') {
 			editedMeetup.id = nextMeetupId;
 		}
-		if (formSubmittable) dispatch('savemeetup', editedMeetup);
+		if (formSubmittable && editedMeetup.id !== nextMeetupId) {
+			meetups.editMeetup(editedMeetup.id, editedMeetup);
+		} else if (formSubmittable && editedMeetup.id === nextMeetupId) {
+			meetups.addMeetup(editedMeetup);
+		}
+		dispatch('modalactionclose');
 	}
 
-	function setValue(event: Event, attributeKey: keyof Meetup) {
-		const target = event.target as HTMLInputElement | HTMLTextAreaElement;
-		editedMeetup[attributeKey] = target.value;
+	function setTitle(event: Event) {
+		const target = event.target as HTMLInputElement;
+		editedMeetup.title = target.value;
+	}
+
+	function setSubtitle(event: Event) {
+		const target = event.target as HTMLInputElement;
+		editedMeetup.subtitle = target.value;
+	}
+
+	function setDescription(event: Event) {
+		const target = event.target as HTMLTextAreaElement;
+		editedMeetup.description = target.value;
+	}
+
+	function setAddress(event: Event) {
+		const target = event.target as HTMLInputElement;
+		editedMeetup.address = target.value;
+	}
+
+	function setImageUrl(event: Event) {
+		const target = event.target as HTMLInputElement;
+		editedMeetup.imageUrl = target.value;
+	}
+
+	function setContactEmail(event: Event) {
+		const target = event.target as HTMLInputElement;
+		editedMeetup.contactEmail = target.value;
 	}
 </script>
 
@@ -63,7 +95,7 @@
 			value={editedMeetup.title}
 			isValid={titleValid}
 			validationErrorMessage="Please enter a valid title"
-			on:input={(event) => setValue(event, 'title')}
+			on:input={setTitle}
 		/>
 		<TextInput
 			id="subtitle"
@@ -71,7 +103,7 @@
 			value={editedMeetup.subtitle}
 			isValid={subtitleValid}
 			validationErrorMessage="Please enter a valid subtitle"
-			on:input={(event) => setValue(event, 'subtitle')}
+			on:input={setSubtitle}
 		/>
 		<TextInput
 			id="description"
@@ -79,7 +111,7 @@
 			value={editedMeetup.description}
 			isValid={descriptionValid}
 			validationErrorMessage="Please enter a valid description"
-			on:input={(event) => setValue(event, 'description')}
+			on:input={setDescription}
 			controlType="textarea"
 		/>
 		<TextInput
@@ -88,7 +120,7 @@
 			value={editedMeetup.address}
 			isValid={addressValid}
 			validationErrorMessage="Please enter a valid address"
-			on:input={(event) => setValue(event, 'address')}
+			on:input={setAddress}
 		/>
 		<TextInput
 			id="image"
@@ -96,7 +128,7 @@
 			value={editedMeetup.imageUrl}
 			isValid={editedMeetup.imageUrl.length > 0}
 			validationErrorMessage="Please enter a valid image URL"
-			on:input={(event) => setValue(event, 'imageUrl')}
+			on:input={setImageUrl}
 		/>
 		<TextInput
 			id="email"
@@ -104,7 +136,7 @@
 			value={editedMeetup.contactEmail}
 			isValid={contactEmailValid}
 			validationErrorMessage="Please enter a valid email address"
-			on:input={(event) => setValue(event, 'contactEmail')}
+			on:input={setContactEmail}
 			controlType="email"
 		/>
 	</form>

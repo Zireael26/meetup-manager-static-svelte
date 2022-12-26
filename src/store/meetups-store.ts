@@ -29,7 +29,6 @@ const meetups = writable([
 const customMeetupsStore = {
 	subscribe: meetups.subscribe,
 	addMeetup: (meetupData: Meetup) => {
-		meetupData.id = Math.random().toString();
 		const newMeetup = {
 			...meetupData
 		};
@@ -45,6 +44,27 @@ const customMeetupsStore = {
 			items[meetupIndex] = updatedMeetup;
 			return [...items];
 		});
+	},
+	editMeetup: (id: string, meetupData: Meetup) => {
+		meetups.update((items) => {
+			const meetupIndex = items.findIndex((m) => m.id === id);
+			// What a cool line of code! It's like a spread operator, but it also allows you to overwrite properties of the object.
+			const updatedMeetup = { ...items[meetupIndex], ...meetupData };
+			items[meetupIndex] = updatedMeetup;
+			return [...items];
+		});
+	},
+	deleteMeetup: (id: string) => {
+		meetups.update((items) => {
+			return items.filter((m) => m.id !== id);
+		});
+	},
+	getById: (id: string) => {
+		let existingMeetup: Meetup | undefined;
+		meetups.subscribe((items) => {
+			existingMeetup = items.find((m) => m.id === id);
+		});
+		return existingMeetup;
 	}
 };
 

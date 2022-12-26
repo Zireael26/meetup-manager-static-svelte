@@ -7,7 +7,7 @@
 
 <section>
 	{#each meetups as meetup (meetup.id)}
-		<MeetupItem {meetup} on:togglefavorite />
+		<MeetupItem {meetup} />
 	{/each}
 </section>
 
