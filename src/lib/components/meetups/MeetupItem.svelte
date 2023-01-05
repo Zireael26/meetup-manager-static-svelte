@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	import type Meetup from '../../models/meetup';
 	import Button from '../Button.svelte';
 	import Badge from '../Badge.svelte';
@@ -8,11 +8,15 @@
 
 	export let meetup: Meetup;
 
-	// const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 	function togglefavorite() {
 		// No need to dispatch an event, we can directly call the store
 		// dispatch('togglefavorite', { id: meetup.id });
 		meetups.toggleFavorite(meetup.id);
+	}
+
+	function editMeetup() {
+		dispatch('editmeetup', { id: meetup.id });
 	}
 </script>
 
@@ -34,11 +38,15 @@
 		<p>{meetup.description}</p>
 	</div>
 	<footer>
-		<Button href="mailto:{meetup.contactEmail}">Contact</Button>
+		<Button on:click={editMeetup}>Edit</Button>
 		<Button mode="outline" on:click={togglefavorite}
 			>{meetup.isFavorite ? 'Unfavorite' : 'Favorite'}</Button
 		>
-		<Button>Show Details</Button>
+		<Button
+			on:click={() => {
+				dispatch('showdetails', { id: meetup.id });
+			}}>Show Details</Button
+		>
 	</footer>
 </article>
 

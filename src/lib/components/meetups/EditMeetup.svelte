@@ -38,6 +38,7 @@
 	};
 
 	export let nextMeetupId = '';
+
 	let editedMeetup = { ...meetup };
 
 	function submitForm() {
@@ -80,6 +81,11 @@
 	function setContactEmail(event: Event) {
 		const target = event.target as HTMLInputElement;
 		editedMeetup.contactEmail = target.value;
+	}
+
+	function deleteMeeptup() {
+		meetups.deleteMeetup(meetup.id);
+		dispatch('modalactionclose');
 	}
 </script>
 
@@ -141,6 +147,9 @@
 		/>
 	</form>
 	<div class="form-actions" slot="actions">
+		{#if meetup.id !== ''}
+			<Button type="button" on:click={deleteMeeptup}>Delete</Button>
+		{/if}
 		<Button type="button" mode="outline" on:click={() => dispatch('modalactioncancel')}
 			>Cancel</Button
 		>
