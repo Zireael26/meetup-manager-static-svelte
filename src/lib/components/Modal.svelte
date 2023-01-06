@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fly, fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 	import Button from './Button.svelte';
 
@@ -27,8 +28,13 @@
 	}
 </script>
 
-<div class="backdrop" on:click={handleBackdropClick} on:keypress={handleEscapeKey} />
-<div class="modal">
+<div
+	class="backdrop"
+	transition:fade
+	on:click={handleBackdropClick}
+	on:keypress={handleEscapeKey}
+/>
+<div class="modal" transition:fly={{ y: -1000 }}>
 	<h1>{title}</h1>
 	<div class="content">
 		<slot />

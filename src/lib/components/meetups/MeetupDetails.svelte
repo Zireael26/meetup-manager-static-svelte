@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import { scale } from 'svelte/transition';
 	import type Meetup from '../../models/meetup';
 	import Button from '../Button.svelte';
 	import meetups from '../../../store/meetups-store';
@@ -28,7 +29,7 @@
 	}
 </script>
 
-<section>
+<section transition:scale>
 	<div class="image" />
 	<img src={meetup.imageUrl} alt={meetup.title} />
 	<div class="content">
